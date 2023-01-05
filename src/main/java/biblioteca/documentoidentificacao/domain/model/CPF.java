@@ -1,4 +1,4 @@
-package cadastros.documentoidentificacao.domain.model;
+package biblioteca.documentoidentificacao.domain.model;
 
 import javax.validation.constraints.NotBlank;
 

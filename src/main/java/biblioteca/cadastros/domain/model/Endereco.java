@@ -1,4 +1,4 @@
-package cadastros.domain.model;
+package biblioteca.cadastros.domain.model;
 
 
 import javax.persistence.*;
@@ -11,23 +11,27 @@ public class Endereco {
     @Column(name = "id")
     private Long id;
 
+    @Column(length = 8)
+    private String cep;
+
     @Column(length = 100)
     private String logradouro;
 
-    @Column(length = 8)
-    private Cep cep;
-
     @Column(length = 6)
-    private Integer numero;
+    private String bairro;
 
     @Column(length = 100)
     private String cidade;
 
-    public Endereco(String logradouro, Cep cep, Integer numero, String cidade) {
-        this.logradouro = logradouro;
+    @Column(length = 2)
+    private String uf;
+
+    public Endereco(String cep, String logradouro, String bairro, String cidade, String uf) {
         this.cep = cep;
-        this.numero = numero;
+        this.logradouro = logradouro;
+        this.bairro = bairro;
         this.cidade = cidade;
+        this.uf = uf;
     }
 
     protected Endereco(){}
@@ -36,10 +40,11 @@ public class Endereco {
     @Override
     public String toString() {
         return " ID do endereço: " + this.id
-                + " Logradouro: " + this.logradouro
                 + " CEP: " + this.cep
-                + " Numero: " + this.numero
-                + "Cidade: " + this.cidade;
+                + " Logradouro: " + this.logradouro
+                + " Bairro: " + this.bairro
+                + " Cidade: " + this.cidade
+                + "UF: " + this.uf;
     }
 
 

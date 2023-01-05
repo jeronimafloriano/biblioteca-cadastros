@@ -1,4 +1,4 @@
-package cadastros.documentoidentificacao.exception;
+package biblioteca.documentoidentificacao.exception;
 
 public class DocumentoIdentificacaoInvalidoException extends RuntimeException {
 

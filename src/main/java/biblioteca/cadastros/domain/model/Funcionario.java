@@ -1,7 +1,7 @@
-package cadastros.domain.model;
+package biblioteca.cadastros.domain.model;
 
 
-import cadastros.documentoidentificacao.domain.model.DocumentoIdentificacao;
+import biblioteca.documentoidentificacao.domain.model.DocumentoIdentificacao;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import javax.persistence.*;
@@ -32,7 +32,6 @@ public class Funcionario {
     }
 
     protected Funcionario(){}
-
 
     @Override
     public String toString() {

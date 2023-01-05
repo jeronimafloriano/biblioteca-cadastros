@@ -1,11 +1,8 @@
-package cadastros.domain.model;
+package biblioteca.cadastros.domain.model;
 
 
-import cadastros.documentoidentificacao.domain.model.DocumentoIdentificacao;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import biblioteca.documentoidentificacao.domain.model.DocumentoIdentificacao;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

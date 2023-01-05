@@ -1,6 +1,6 @@
-package cadastros.documentoidentificacao.domain.model;
+package biblioteca.documentoidentificacao.domain.model;
 
-import cadastros.documentoidentificacao.exception.DocumentoIdentificacaoInvalidoException;
+import biblioteca.documentoidentificacao.exception.DocumentoIdentificacaoInvalidoException;
 
 public interface DocumentoIdentificacao {
 

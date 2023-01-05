@@ -1,7 +1,7 @@
-package cadastros.documentoidentificacao.domain.model;
+package biblioteca.documentoidentificacao.domain.model;
 
 
-import cadastros.documentoidentificacao.exception.CNPJSomenteZerosException;
+import biblioteca.documentoidentificacao.exception.CNPJSomenteZerosException;
 
 import javax.validation.constraints.NotBlank;
 
