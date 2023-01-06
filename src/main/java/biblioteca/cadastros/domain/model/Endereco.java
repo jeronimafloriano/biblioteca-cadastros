@@ -44,13 +44,12 @@ public class Endereco {
         this.cliente = cliente;
     }
 
-    public Endereco(String cep, String logradouro, String bairro, String cidade, String uf, Funcionario funcionario) {
+    public Endereco(String cep, String logradouro, String bairro, String cidade, String uf) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.bairro = bairro;
         this.localidade = cidade;
         this.uf = uf;
-        this.funcionario = funcionario;
     }
 
     protected Endereco(){}

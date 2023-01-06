@@ -29,7 +29,8 @@ public class Cliente {
     public Cliente(String nome, String documento, Endereco endereco) {
         this.nome = nome;
         this.endereco = endereco;
-        DocumentoIdentificacao.from(documento);
+        var documentoIdentificacao = DocumentoIdentificacao.from(documento);
+        this.documento = documentoIdentificacao.getNumero();
     }
 
     protected Cliente(){}
