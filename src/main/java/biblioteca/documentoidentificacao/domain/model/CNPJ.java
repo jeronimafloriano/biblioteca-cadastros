@@ -11,7 +11,6 @@ import javax.validation.constraints.NotBlank;
 public final class CNPJ implements DocumentoIdentificacao {
 
 	@NotBlank(message = "{CNPJ.numero.NotBlank}")
-	@br.com.caelum.stella.bean.validation.CNPJ(message = "{CNPJ.numero.CNPJ}")
 	private String numero;
 
 	private CNPJ(String numero) {
