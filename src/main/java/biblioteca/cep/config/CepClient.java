@@ -36,7 +36,6 @@ public class CepClient {
 
     }
 
-
     private static void validarCep(String cep){
         if (cep.isBlank()){
             throw new CepException("O cep informado não pode ser nulo ou vazio:" + cep);

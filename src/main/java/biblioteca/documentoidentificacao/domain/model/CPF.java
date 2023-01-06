@@ -1,18 +1,32 @@
 package biblioteca.documentoidentificacao.domain.model;
 
+
+import biblioteca.documentoidentificacao.exception.DocumentoIdentificacaoInvalidoException;
+import br.com.caelum.stella.validation.CPFValidator;
+import br.com.caelum.stella.validation.InvalidStateException;
+
 import javax.validation.constraints.NotBlank;
 
 public final class CPF implements DocumentoIdentificacao {
 
 	@NotBlank(message = "{CPF.numero.NotBlank}")
-	@br.com.caelum.stella.bean.validation.CPF(message = "{CPF.numero.CPF}")
 	private final String numero;
 
 	private CPF(String numero) {
 		this.numero = numero;
+
 	}
 
 	public static CPF from(String numero) {
+		CPFValidator validator = new CPFValidator();
+
+		try {
+			validator.assertValid(numero);
+		} catch (InvalidStateException e){
+			throw new DocumentoIdentificacaoInvalidoException("Documento inválido: "
+					+ numero + " Informe um CPF(11 dígitos) ou CNPJ(14 dígitos) válido." + e);
+		}
+
 		return new CPF(numero);
 	}
 
@@ -30,5 +44,6 @@ public final class CPF implements DocumentoIdentificacao {
 	public boolean isPessoaFisica() {
 		return true;
 	}
+
 
 }

@@ -1,9 +1,12 @@
 package biblioteca.documentoidentificacao.domain.model;
 
-
 import biblioteca.documentoidentificacao.exception.CNPJSomenteZerosException;
+import biblioteca.documentoidentificacao.exception.DocumentoIdentificacaoInvalidoException;
+import br.com.caelum.stella.validation.CNPJValidator;
+import br.com.caelum.stella.validation.InvalidStateException;
 
 import javax.validation.constraints.NotBlank;
+
 
 public final class CNPJ implements DocumentoIdentificacao {
 
@@ -19,6 +22,15 @@ public final class CNPJ implements DocumentoIdentificacao {
 	}
 
 	public static CNPJ from(String numero) {
+		CNPJValidator validator = new CNPJValidator();
+
+		try {
+			validator.assertValid(numero);
+		} catch (InvalidStateException e){
+			throw new DocumentoIdentificacaoInvalidoException("Documento inválido: "
+					+ numero + " Informe um CPF(11 dígitos) ou CNPJ(14 dígitos) válido." + e);
+		}
+
 		return new CNPJ(numero);
 	}
 

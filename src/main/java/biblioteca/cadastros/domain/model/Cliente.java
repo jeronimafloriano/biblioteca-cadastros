@@ -2,10 +2,10 @@ package biblioteca.cadastros.domain.model;
 
 
 import biblioteca.documentoidentificacao.domain.model.DocumentoIdentificacao;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "cliente")
@@ -19,16 +19,17 @@ public class Cliente {
     @Column(length = 100)
     private String nome;
 
-    @NotNull(message = "Cliente.documento.NotNull")
-    private DocumentoIdentificacao documento;
+    //@OneToOne
+    private String documento;
 
-    @OneToOne
+    @OneToOne(mappedBy = "cliente")
+    @JsonIgnore
     private Endereco endereco;
 
-    public Cliente(String nome, DocumentoIdentificacao documento, Endereco endereco) {
+    public Cliente(String nome, String documento, Endereco endereco) {
         this.nome = nome;
-        this.documento = documento;
         this.endereco = endereco;
+        DocumentoIdentificacao.from(documento);
     }
 
     protected Cliente(){}
@@ -41,4 +42,31 @@ public class Cliente {
                 + " Documento: " + this.documento;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 }
