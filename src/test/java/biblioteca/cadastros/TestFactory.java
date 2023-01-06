@@ -13,7 +13,7 @@ public final class TestFactory {
 
 
     public static Endereco umEnderecoDigitado(){
-        return new Endereco("74370340", "Rua Vinte Um de Junho",
+        return new Endereco("74370320", "Rua Vinte Um de Junho",
                 "Setor Tancredo Neves", "Goiânia", "GO");
 
     }

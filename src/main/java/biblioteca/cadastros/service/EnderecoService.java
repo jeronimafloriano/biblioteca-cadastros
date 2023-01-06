@@ -32,6 +32,7 @@ public class EnderecoService {
 
     public Endereco salvar(String cep){
         Endereco endereco = CepClient.buscarCep(cep);
+        endereco.setCep(CepClient.removerHifen(cep));
         return repository.save(endereco);
     }
 
@@ -48,8 +49,9 @@ public class EnderecoService {
     public Endereco editar(Long id, String cep){
         Endereco endereco = this.listarEnderecoPorId(id);
         Endereco buscarPorCep = CepClient.buscarCep(cep);
+        var cepSemHifen = CepClient.removerHifen(buscarPorCep.getCep());
 
-        endereco.setCep(buscarPorCep.getCep());
+        endereco.setCep(cepSemHifen);
         endereco.setLogradouro(buscarPorCep.getLogradouro());
         endereco.setBairro(buscarPorCep.getBairro());
         endereco.setLocalidade(buscarPorCep.getLocalidade());

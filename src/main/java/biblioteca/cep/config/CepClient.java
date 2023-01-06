@@ -47,4 +47,8 @@ public class CepClient {
 
     }
 
+    public static String removerHifen(String cep){
+        return cep.replaceAll("-","");
+    }
+
 }

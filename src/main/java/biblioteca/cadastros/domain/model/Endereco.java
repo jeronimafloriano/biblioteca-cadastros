@@ -4,6 +4,8 @@ package biblioteca.cadastros.domain.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Objects;
+
 @Entity
 @Table(name = "endereco")
 public class Endereco {
@@ -56,12 +58,16 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return " ID do endereço: " + this.id
-                + " CEP: " + this.cep
-                + " Logradouro: " + this.logradouro
-                + " Bairro: " + this.bairro
-                + " Cidade: " + this.localidade
-                + "UF: " + this.uf;
+        return "Endereco{" +
+                " ID: " + id +
+                ", CEP: " + cep + '\'' +
+                ", LOGRADOURO: " + logradouro + '\'' +
+                ", BAIRRO: " + bairro + '\'' +
+                ", LOCALIDADE: " + localidade + '\'' +
+                ", UF: " + uf + '\'' +
+                ", CLIENTE " + cliente +
+                ", FUNCIONARIO: " + funcionario +
+                '}';
     }
 
     public Long getId() {
@@ -122,5 +128,18 @@ public class Endereco {
 
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Endereco endereco = (Endereco) o;
+        return Objects.equals(id, endereco.id) && Objects.equals(cep, endereco.cep) && Objects.equals(logradouro, endereco.logradouro) && Objects.equals(bairro, endereco.bairro) && Objects.equals(localidade, endereco.localidade) && Objects.equals(uf, endereco.uf);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cep, logradouro, bairro, localidade, uf);
     }
 }

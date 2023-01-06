@@ -26,6 +26,7 @@ public class Funcionario {
     public Funcionario(String nome, String documento, Endereco endereco) {
         this.nome = nome;
         this.endereco = endereco;
+        endereco.setFuncionario(this);
         var documentoIdentificacao = DocumentoIdentificacao.from(documento);
         this.documento = documentoIdentificacao.getNumero();
     }
