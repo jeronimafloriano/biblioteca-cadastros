@@ -31,6 +31,7 @@ public class Endereco {
     private String uf;
 
     @OneToOne
+    @JsonIgnore
     private Cliente cliente;
 
     @OneToOne
