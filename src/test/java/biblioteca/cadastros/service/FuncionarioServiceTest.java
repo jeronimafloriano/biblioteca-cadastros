@@ -20,12 +20,13 @@ import java.util.List;
 import java.util.Optional;
 
 import static biblioteca.cadastros.TestFactory.umEnderecoDigitado;
+import static biblioteca.cadastros.TestFactory.umFuncionarioDigitado;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
-import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class FuncionarioServiceTest {
@@ -104,7 +105,6 @@ class FuncionarioServiceTest {
 
         assertThat(result).isNotNull().isEqualTo(endereco);
         assertThat(funcionario.getEndereco()).isNotNull().isEqualTo(endereco);
-        assertThat(endereco.getFuncionario()).isNotNull().isEqualTo(funcionario);
     }
 
     @DisplayName("Retorna uma lista de funcionários com base em um filtro informado.")
@@ -165,5 +165,15 @@ class FuncionarioServiceTest {
         then(repository).shouldHaveNoMoreInteractions();
         assertThat(funcionario.getNome()).isEqualTo("Poliana");
         assertThat(funcionario.getDocumento()).isEqualTo("25420051095");
+    }
+
+    @Test
+    @DisplayName("Testa a remoção de um funcionario.")
+    void deletar() {
+        Funcionario funcionario = umFuncionarioDigitado();
+        given(repository.findById(5L)).willReturn(Optional.of(funcionario));
+        funcionarioService.remover(5L);
+
+        verify(repository).delete(funcionario);
     }
 }

@@ -67,6 +67,7 @@ public class ClienteService {
         cliente.setDocumento(dto.getDocumento());
         cliente.setEndereco(endereco);
 
+        enderecoService.vincularCliente(endereco, cliente);
         repository.save(cliente);
     }
 

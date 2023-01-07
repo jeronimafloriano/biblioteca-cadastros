@@ -37,15 +37,6 @@ public class Endereco {
     @JsonIgnore
     private Funcionario funcionario;
 
-    public Endereco(String cep, String logradouro, String bairro, String cidade, String uf, Cliente cliente) {
-        this.cep = cep;
-        this.logradouro = logradouro;
-        this.bairro = bairro;
-        this.localidade = cidade;
-        this.uf = uf;
-        this.cliente = cliente;
-    }
-
     public Endereco(String cep, String logradouro, String bairro, String cidade, String uf) {
         this.cep = cep;
         this.logradouro = logradouro;

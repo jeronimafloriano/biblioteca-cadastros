@@ -103,8 +103,6 @@ class ClienteServiceTest {
         then(repository).shouldHaveNoMoreInteractions();
 
         assertThat(result).isNotNull().isEqualTo(endereco);
-        assertThat(cliente.getEndereco()).isNotNull().isEqualTo(endereco);
-        assertThat(endereco.getCliente()).isNotNull().isEqualTo(cliente);
     }
 
     @DisplayName("Retorna uma lista de cliente com base em um filtro informado.")

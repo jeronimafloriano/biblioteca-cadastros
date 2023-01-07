@@ -67,6 +67,7 @@ public class FuncionarioService {
         funcionario.setDocumento(dto.getDocumento());
         funcionario.setEndereco(endereco);
 
+        enderecoService.vincularFuncionario(endereco, funcionario);
         repository.save(funcionario);
 
     }
