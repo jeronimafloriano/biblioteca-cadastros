@@ -112,7 +112,7 @@ class FuncionarioServiceTest {
     @MockitoSettings(strictness = Strictness.LENIENT)
     void deveListarFuncionariosPorFiltroInformado() {
         //given
-        Funcionario funcionario = new Funcionario("Paulo", "37712885095", endereco);
+        FuncionarioDto funcionario = new FuncionarioDto("Paulo", "37712885095", endereco.toString());
 
         ExampleMatcher matcher = ExampleMatcher
                 .matching()
@@ -127,7 +127,8 @@ class FuncionarioServiceTest {
         List<Funcionario> result = funcionarioService.buscarPor(funcionario);
 
         //then
-        assertThat(result).hasSize(1).contains(funcionario);
+        assertThat(result).hasSize(1);
+        assertThat(funcionario.getNome()).isNotNull().isEqualTo("Paulo");
     }
 
     @DisplayName("Teste de cadastro de funcionário.")

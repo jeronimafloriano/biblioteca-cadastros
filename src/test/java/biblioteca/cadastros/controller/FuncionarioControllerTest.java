@@ -163,7 +163,7 @@ class FuncionarioControllerTest {
 
         Example example = Example.of(funcionario, matcher);
 
-        given(service.buscarPor(any(Funcionario.class))).willReturn(List.of(funcionario));
+        given(service.buscarPor(any(FuncionarioDto.class))).willReturn(List.of(funcionario));
 
         //when
         mockMvc.perform(get(PATH + "/filtrar")
@@ -175,7 +175,7 @@ class FuncionarioControllerTest {
                 .andExpect(status().isOk());
 
         //then
-        assertThat(service.buscarPor(funcionario)).contains(funcionario);
+        assertThat(service.buscarPor(dto)).contains(funcionario);
     }
 
 

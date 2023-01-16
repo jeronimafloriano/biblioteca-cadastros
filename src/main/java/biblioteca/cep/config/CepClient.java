@@ -1,8 +1,10 @@
 package biblioteca.cep.config;
 
 import biblioteca.cadastros.domain.model.Endereco;
+import biblioteca.cep.exception.ApiCepException;
 import biblioteca.cep.exception.CepException;
 import com.google.gson.Gson;
+import io.swagger.annotations.Api;
 
 import java.io.IOException;
 import java.net.URI;
@@ -29,7 +31,7 @@ public class CepClient {
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+            throw new ApiCepException("Não foi possível buscar os dados do endereço: " + e);
         }
 
         return gson.fromJson(response.body(), Endereco.class);

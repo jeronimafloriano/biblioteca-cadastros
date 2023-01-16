@@ -27,7 +27,7 @@ public class EnderecoController {
             @ApiResponse(code = 404, message = "Endereço não encontrado para o ID informado")
     })
     public Endereco listarPorId(@PathVariable Long id){
-        return service.listarEnderecoPorId(id);
+        return service.listarEnderecoPorId(id); //retornar dto
     }
 
     @GetMapping(produces = "application/json")
