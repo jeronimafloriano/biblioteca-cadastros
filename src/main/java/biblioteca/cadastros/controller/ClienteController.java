@@ -23,7 +23,7 @@ import java.util.List;
 @RequestMapping(value = "/clientes")
 public class ClienteController {
 
-    @Autowired //remover
+    @Autowired
     private ClienteService service;
 
     @Autowired

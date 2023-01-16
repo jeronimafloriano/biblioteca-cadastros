@@ -41,7 +41,7 @@ public class FuncionarioService {
         return funcionario.getEndereco();
     }
 
-    public List<Funcionario> buscarPor(FuncionarioDto filtro){
+    public List<Funcionario> buscarPor(Funcionario filtro){
         ExampleMatcher matcher = ExampleMatcher
                 .matching()
                 .withIgnoreCase()

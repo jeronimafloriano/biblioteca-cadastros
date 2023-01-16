@@ -1,6 +1,9 @@
 package biblioteca.cadastros.dto;
 
 
+import biblioteca.cadastros.domain.model.Endereco;
+import biblioteca.cep.config.CepClient;
+
 import javax.validation.constraints.NotNull;
 
 public class ClienteDto {
@@ -18,6 +21,7 @@ public class ClienteDto {
     public ClienteDto(String nome, String documento, String cep) {
         this.nome = nome;
         this.documento = documento;
+        //Endereco endereco = CepClient.buscarCep(cep);
         this.cep = cep;
     }
 

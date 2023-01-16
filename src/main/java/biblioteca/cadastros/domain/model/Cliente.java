@@ -20,7 +20,7 @@ public class Cliente {
     @Column(length = 100)
     private String nome;
 
-
+    //@OneToOne
     private String documento;
 
     @OneToOne(mappedBy = "cliente")

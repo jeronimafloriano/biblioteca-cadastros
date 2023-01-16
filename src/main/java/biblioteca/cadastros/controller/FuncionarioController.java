@@ -45,7 +45,7 @@ public class FuncionarioController {
             @ApiResponse(code  = 200, message = "Funcionário encontrado"),
             @ApiResponse(code  = 404, message = "Funcionário não encontrado para o filtro informado")
     })
-    public List<Funcionario> listarPorFiltro(@RequestBody @Valid FuncionarioDto filtro){
+    public List<Funcionario> listarPorFiltro(Funcionario filtro){
         return service.buscarPor(filtro);
     }
 
