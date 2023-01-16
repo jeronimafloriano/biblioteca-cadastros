@@ -1,4 +1,4 @@
-# biblioteca-dona-gertrudes
+# biblioteca
 Api Rest com Java(17) e Spring boot para o cadastro de clientes e funcionários de uma biblioteca, com endereço dos clientes cadastrados utilizando a Api ViaCEP.
 
 Com essa aplicação é possível cadastrar, editar e atualizar clientes e funcionários. 
