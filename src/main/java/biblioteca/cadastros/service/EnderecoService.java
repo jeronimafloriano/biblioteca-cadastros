@@ -2,7 +2,8 @@ package biblioteca.cadastros.service;
 
 import biblioteca.cadastros.domain.model.*;
 import biblioteca.cadastros.domain.repository.EnderecoRepository;
-import biblioteca.cep.config.CepClient;
+import biblioteca.cep.config.CepClientGson;
+import biblioteca.cep.config.CepClientRestTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class EnderecoService {
 
     @Autowired
     EnderecoRepository repository;
+
+    @Autowired
+    CepClientRestTemplate cepClient2;
 
 
     public Endereco listarEnderecoPorId(Long id){
@@ -31,8 +35,14 @@ public class EnderecoService {
 
 
     public Endereco salvar(String cep){
-        Endereco endereco = CepClient.buscarCep(cep);
-        endereco.setCep(CepClient.removerHifen(cep));
+        Endereco endereco = CepClientGson.buscarCep(cep);
+        endereco.setCep(CepClientGson.removerHifen(cep));
+        return repository.save(endereco);
+    }
+
+    public Endereco salvarComCepClient2(String cep){
+        Endereco endereco = cepClient2.buscarCep(cep);
+        endereco.setCep(CepClientGson.removerHifen(cep));
         return repository.save(endereco);
     }
 
@@ -48,8 +58,8 @@ public class EnderecoService {
 
     public Endereco editar(Long id, String cep){
         Endereco endereco = this.listarEnderecoPorId(id);
-        Endereco buscarPorCep = CepClient.buscarCep(cep);
-        var cepSemHifen = CepClient.removerHifen(buscarPorCep.getCep());
+        Endereco buscarPorCep = CepClientGson.buscarCep(cep);
+        var cepSemHifen = CepClientGson.removerHifen(buscarPorCep.getCep());
 
         endereco.setCep(cepSemHifen);
         endereco.setLogradouro(buscarPorCep.getLogradouro());

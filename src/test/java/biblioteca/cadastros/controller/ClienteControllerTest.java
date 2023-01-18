@@ -5,6 +5,7 @@ import biblioteca.cadastros.domain.repository.ClienteRepository;
 import biblioteca.cadastros.dto.ClienteDto;
 import biblioteca.cadastros.service.ClienteService;
 import biblioteca.cadastros.service.EnderecoService;
+import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,6 +30,7 @@ import static biblioteca.cadastros.TestFactory.umClienteDigitado;
 import static biblioteca.cadastros.TestFactory.umEnderecoDigitado;
 import static biblioteca.cadastros.config.TestesConfig.objectToJson;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -111,7 +113,7 @@ class ClienteControllerTest {
 
         when(service.cadastrar(any(ClienteDto.class))).thenReturn(cliente);
 
-        mockMvc.perform(request(HttpMethod.POST, PATH)
+        var result = mockMvc.perform(request(HttpMethod.POST, PATH)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .param("name", dto.getNome())
                         .param("documento", dto.getDocumento())
@@ -119,8 +121,13 @@ class ClienteControllerTest {
                         .content(objectToJson(dto)))
                 .andExpect(status().is2xxSuccessful());
 
+        String conteudo = result.andReturn().getResponse().getContentAsString();
+        //Cliente cliente2 = new Gson().fromJson(conteudo, Cliente.class);
+
         //then
         verify(service).cadastrar(any(ClienteDto.class));
+        assertTrue(conteudo.contains("Carlos"));
+
     }
 
     @DisplayName("Testa a edição de um cliente cadastrado.")

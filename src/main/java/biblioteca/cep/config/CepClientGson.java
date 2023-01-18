@@ -1,7 +1,6 @@
 package biblioteca.cep.config;
 
 import biblioteca.cadastros.domain.model.Endereco;
-import biblioteca.cep.exception.ApiCepException;
 import biblioteca.cep.exception.CepException;
 import com.google.gson.Gson;
 
@@ -11,7 +10,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class CepClient {
+public class CepClientGson {
 
     private static final String cepUrl = "https://viacep.com.br/ws/";
     private static final Gson gson = new Gson();

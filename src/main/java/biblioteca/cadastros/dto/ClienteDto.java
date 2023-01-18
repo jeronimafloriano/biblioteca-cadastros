@@ -1,9 +1,6 @@
 package biblioteca.cadastros.dto;
 
 
-import biblioteca.cadastros.domain.model.Endereco;
-import biblioteca.cep.config.CepClient;
-
 import javax.validation.constraints.NotNull;
 
 public class ClienteDto {

@@ -53,7 +53,7 @@ public class ClienteService {
     }
 
     public Cliente cadastrar(ClienteDto dto){
-        Endereco endereco = enderecoService.salvar(dto.getCep());
+        Endereco endereco = enderecoService.salvarComCepClient2(dto.getCep());
         Cliente cliente = new Cliente(dto.getNome(), dto.getDocumento(), endereco);
         return repository.save(cliente);
     }
