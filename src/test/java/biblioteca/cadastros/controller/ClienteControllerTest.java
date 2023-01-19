@@ -5,7 +5,6 @@ import biblioteca.cadastros.domain.repository.ClienteRepository;
 import biblioteca.cadastros.dto.ClienteDto;
 import biblioteca.cadastros.service.ClienteService;
 import biblioteca.cadastros.service.EnderecoService;
-import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.data.domain.*;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -26,9 +24,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.List;
 
-import static biblioteca.cadastros.TestFactory.umClienteDigitado;
-import static biblioteca.cadastros.TestFactory.umEnderecoDigitado;
-import static biblioteca.cadastros.config.TestesConfig.objectToJson;
+import static biblioteca.cadastros.utils.TestsFactory.umClienteDigitado;
+import static biblioteca.cadastros.utils.TestsFactory.umEnderecoDigitado;
+import static biblioteca.cadastros.utils.TestesConfig.objectToJson;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;

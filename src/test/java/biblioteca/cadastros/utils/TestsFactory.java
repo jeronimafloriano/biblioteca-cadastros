@@ -1,16 +1,16 @@
-package biblioteca.cadastros;
+package biblioteca.cadastros.utils;
 
 
 import biblioteca.cadastros.domain.model.Cliente;
 import biblioteca.cadastros.domain.model.Endereco;
 import biblioteca.cadastros.domain.model.Funcionario;
 
-public final class TestFactory {
+
+public class TestsFactory {
 
     private String nome = "Maria";
     private String documento = "89233687090";
     private Endereco endereco;
-
 
     public static Endereco umEnderecoDigitado(){
         return new Endereco("74370320", "Rua Vinte Um de Junho",

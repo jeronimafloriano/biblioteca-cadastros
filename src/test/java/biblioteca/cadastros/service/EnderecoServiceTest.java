@@ -1,12 +1,9 @@
 package biblioteca.cadastros.service;
 
-import biblioteca.cadastros.domain.model.Cliente;
 import biblioteca.cadastros.domain.model.ClientesPorCep;
 import biblioteca.cadastros.domain.model.Endereco;
 import biblioteca.cadastros.domain.model.FuncionariosPorCep;
-import biblioteca.cadastros.domain.repository.ClienteRepository;
 import biblioteca.cadastros.domain.repository.EnderecoRepository;
-import biblioteca.cadastros.dto.ClienteDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,15 +13,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
-import org.springframework.data.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static biblioteca.cadastros.TestFactory.*;
+import static biblioteca.cadastros.utils.TestsFactory.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;

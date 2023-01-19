@@ -1,6 +1,6 @@
 package biblioteca.cadastros.domain.model;
 
-import biblioteca.cadastros.TestFactory;
+import biblioteca.cadastros.utils.TestsFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ class FuncionarioTest {
     @DisplayName("Teste de cadastro de funcionário, informando todos os campos necessários.")
     @Test
     void deveCriarFuncionarioComTodosOsCamposInformados(){
-        Endereco endereco = TestFactory.umEnderecoDigitado();
+        Endereco endereco = TestsFactory.umEnderecoDigitado();
         Funcionario funcionario = new Funcionario(nome, documento, endereco);
 
         assertThat(funcionario.getNome()).isEqualTo(nome);
@@ -28,7 +28,7 @@ class FuncionarioTest {
     @DisplayName("Testa a edição do cadastro de um funcionário.")
     @Test
     void deveAlterarOsCamposInformados(){
-        Endereco endereco = TestFactory.umEnderecoDigitado();
+        Endereco endereco = TestsFactory.umEnderecoDigitado();
         Funcionario funcionario = new Funcionario(nome, documento, endereco);
 
         Endereco outroEndereco = new Endereco("54310210", "Rua Luiz Eloi de Pontes",

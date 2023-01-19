@@ -23,12 +23,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.List;
-import java.util.Optional;
 
-import static biblioteca.cadastros.TestFactory.*;
-import static biblioteca.cadastros.config.TestesConfig.objectToJson;
+import static biblioteca.cadastros.utils.TestsFactory.*;
+import static biblioteca.cadastros.utils.TestesConfig.objectToJson;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;

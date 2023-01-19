@@ -1,7 +1,6 @@
 package biblioteca.cadastros.controller;
 
 import biblioteca.cadastros.domain.model.Endereco;
-import biblioteca.cadastros.domain.model.FuncionariosPorCep;
 import biblioteca.cadastros.domain.repository.EnderecoRepository;
 import biblioteca.cadastros.service.ClienteService;
 import biblioteca.cadastros.service.EnderecoService;
@@ -21,7 +20,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.ArrayList;
 import java.util.List;
 
-import static biblioteca.cadastros.TestFactory.umEnderecoDigitado;
+import static biblioteca.cadastros.utils.TestsFactory.umEnderecoDigitado;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;

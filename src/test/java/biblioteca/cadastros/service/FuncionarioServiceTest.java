@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static biblioteca.cadastros.TestFactory.umEnderecoDigitado;
-import static biblioteca.cadastros.TestFactory.umFuncionarioDigitado;
+import static biblioteca.cadastros.utils.TestsFactory.umEnderecoDigitado;
+import static biblioteca.cadastros.utils.TestsFactory.umFuncionarioDigitado;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;

@@ -1,7 +1,7 @@
 package biblioteca.cadastros.domain.model;
 
 
-import biblioteca.cadastros.TestFactory;
+import biblioteca.cadastros.utils.TestsFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -50,7 +50,7 @@ class EnderecoTest {
     @Test
     void deveAtribuirUmCliente(){
         Endereco endereco = new Endereco(cep, logradouro, bairro, localidade, uf);
-        Cliente cliente = TestFactory.umClienteDigitado();
+        Cliente cliente = TestsFactory.umClienteDigitado();
 
         endereco.setCliente(cliente);
 
@@ -61,7 +61,7 @@ class EnderecoTest {
     @Test
     void deveAtribuirUmFuncionario(){
         Endereco endereco = new Endereco(cep, logradouro, bairro, localidade, uf);
-        Funcionario funcionario = TestFactory.umFuncionarioDigitado();
+        Funcionario funcionario = TestsFactory.umFuncionarioDigitado();
 
         endereco.setFuncionario(funcionario);
 

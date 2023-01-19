@@ -1,6 +1,6 @@
 package biblioteca.cadastros.domain.model;
 
-import biblioteca.cadastros.TestFactory;
+import biblioteca.cadastros.utils.TestsFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ class ClienteTest {
     @DisplayName("Teste de cadastro de cliente, informando todos os campos necessários.")
     @Test
     void deveCriarClienteComTodosOsCamposInformados(){
-        Endereco endereco = TestFactory.umEnderecoDigitado();
+        Endereco endereco = TestsFactory.umEnderecoDigitado();
         Cliente cliente = new Cliente(nome, documento, endereco);;
 
         assertThat(cliente.getNome()).isEqualTo(nome);
@@ -28,7 +28,7 @@ class ClienteTest {
     @DisplayName("Testa a edição do cadastro de um cliente.")
     @Test
     void deveAlterarOsCamposInformados(){
-        Endereco endereco = TestFactory.umEnderecoDigitado();
+        Endereco endereco = TestsFactory.umEnderecoDigitado();
         Cliente cliente = new Cliente(nome, documento, endereco);
 
         Endereco outroEndereco = new Endereco("54310210", "Rua Luiz Eloi de Pontes",
