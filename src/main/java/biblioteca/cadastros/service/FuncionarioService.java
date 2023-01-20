@@ -18,11 +18,14 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class FuncionarioService {
 
-    @Autowired
     FuncionarioRepository repository;
 
-    @Autowired
     EnderecoService enderecoService;
+
+    public FuncionarioService(FuncionarioRepository repository, EnderecoService enderecoService) {
+        this.repository = repository;
+        this.enderecoService = enderecoService;
+    }
 
     public List<Funcionario> listarTodos(Pageable paginacao){
         Page<Funcionario> funcionarios = repository.findAll(paginacao);

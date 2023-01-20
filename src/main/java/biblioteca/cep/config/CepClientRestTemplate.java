@@ -9,10 +9,13 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class CepClientRestTemplate {
 
-    @Autowired
     RestTemplate restTemplate;
 
     private static final String url = "https://viacep.com.br/ws/";
+
+    public CepClientRestTemplate(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     public Endereco buscarCep(String cep) {
         validarCep(cep);

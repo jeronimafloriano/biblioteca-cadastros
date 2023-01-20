@@ -23,11 +23,14 @@ import java.util.List;
 @RequestMapping(value = "/funcionarios")
 public class FuncionarioController {
 
-    @Autowired
     private FuncionarioService service;
-
-    @Autowired
+    
     private EnderecoService enderecoService;
+
+    public FuncionarioController(FuncionarioService service, EnderecoService enderecoService) {
+        this.service = service;
+        this.enderecoService = enderecoService;
+    }
 
     @GetMapping(value = "/{id}", produces = "application/json")
     @ApiOperation("Obter detalhes do cadastro de um funcionário")

@@ -18,11 +18,13 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class ClienteService {
 
-    @Autowired
-    ClienteRepository repository;
+    private ClienteRepository repository;
+    private EnderecoService enderecoService;
 
-    @Autowired
-    EnderecoService enderecoService;
+    public ClienteService(ClienteRepository repository, EnderecoService enderecoService) {
+        this.repository = repository;
+        this.enderecoService = enderecoService;
+    }
 
     public List<Cliente> listarTodos(Pageable paginacao){
         Page<Cliente> pessoas = repository.findAll(paginacao);

@@ -23,11 +23,14 @@ import java.util.List;
 @RequestMapping(value = "/clientes")
 public class ClienteController {
 
-    @Autowired
     private ClienteService service;
 
-    @Autowired
     private EnderecoService enderecoService;
+
+    public ClienteController(ClienteService service, EnderecoService enderecoService) {
+        this.service = service;
+        this.enderecoService = enderecoService;
+    }
 
     @GetMapping(value = "/{id}", produces = "application/json")
     @ApiOperation("Obter detalhes do cadastro de um cliente")

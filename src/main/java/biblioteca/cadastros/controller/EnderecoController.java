@@ -16,8 +16,11 @@ import java.util.List;
 @RequestMapping(value = "/enderecos")
 public class EnderecoController {
 
-    @Autowired
     private EnderecoService service;
+
+    public EnderecoController(EnderecoService service) {
+        this.service = service;
+    }
 
 
     @GetMapping(value = "{id}", produces = "application/json")

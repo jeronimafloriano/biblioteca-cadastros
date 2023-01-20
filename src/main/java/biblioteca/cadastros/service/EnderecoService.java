@@ -14,11 +14,14 @@ import java.util.List;
 @Service
 public class EnderecoService {
 
-    @Autowired
     EnderecoRepository repository;
 
-    @Autowired
     CepClientRestTemplate cepClient2;
+
+    public EnderecoService(EnderecoRepository repository, CepClientRestTemplate cepClient2) {
+        this.repository = repository;
+        this.cepClient2 = cepClient2;
+    }
 
 
     public Endereco listarEnderecoPorId(Long id){
