@@ -18,7 +18,6 @@ public class ClienteDto {
     public ClienteDto(String nome, String documento, String cep) {
         this.nome = nome;
         this.documento = documento;
-        //Endereco endereco = CepClient.buscarCep(cep);
         this.cep = cep;
     }
 

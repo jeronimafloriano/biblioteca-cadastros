@@ -4,7 +4,6 @@ import biblioteca.cadastros.domain.model.*;
 import biblioteca.cadastros.domain.repository.EnderecoRepository;
 import biblioteca.cep.config.CepClientGson;
 import biblioteca.cep.config.CepClientRestTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;

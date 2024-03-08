@@ -136,7 +136,6 @@ class ClienteServiceTest {
         ClienteDto dto = new ClienteDto(cliente.getNome(), cliente.getDocumento(), cliente.getEndereco().getCep());
 
         given(repository.save(any(Cliente.class))).willReturn(cliente);
-        given(enderecoService.salvar(endereco.getCep())).willReturn(endereco);
 
         //when
         var result = clienteService.cadastrar(dto);

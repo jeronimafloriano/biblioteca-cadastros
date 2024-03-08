@@ -4,7 +4,6 @@ import biblioteca.cadastros.domain.model.Cliente;
 import biblioteca.cadastros.domain.model.Endereco;
 import biblioteca.cadastros.domain.repository.ClienteRepository;
 import biblioteca.cadastros.dto.ClienteDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

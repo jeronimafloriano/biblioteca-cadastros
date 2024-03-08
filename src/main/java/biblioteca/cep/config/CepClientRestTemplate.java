@@ -2,7 +2,6 @@ package biblioteca.cep.config;
 
 import biblioteca.cadastros.domain.model.Endereco;
 import biblioteca.cep.exception.CepException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 

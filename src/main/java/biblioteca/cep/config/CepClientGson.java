@@ -29,7 +29,7 @@ public class CepClientGson {
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+            throw new CepException(e.getMessage());
         }
 
         return gson.fromJson(response.body(), Endereco.class);
