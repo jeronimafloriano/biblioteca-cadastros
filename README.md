@@ -13,6 +13,16 @@ A aplicação foi configurada para utilizar o docker para executar o MySql, Prom
 - Docker 
 - Maven 2.7 ou superior
 
+## Swagger
+A aplicação foi documentada utilizando swagger e pode ser acessada pelo endereço http://localhost:8080/swagger-ui/index.html
+
+Para realizar uma requisição do tipo POST, por exemplo para o endpoint /funcionarios basta enviar no corpo da requisição:
+{
+  "nome": "Maria",
+  "documento": "84011734004",
+  "cep": "22461190"
+}
+
 ## Prometheus 
 Prometheus é um sistema de monitoramento e alerta. Ele está configurado para rodar na porta http://localhost:9090/
 
@@ -25,8 +35,8 @@ O Grafana está configurado para rodar na porta http://localhost:3000/
 Na raiz do projeto, abra um terminal e execute: docker-compose up
 Abra um outro terminal também na raiz do projeto e execute: mvn spring-boot:run
 
-Nesse momento a aplicação será executada. Acesse http://localhost:3000/ com o usuário e senha "admin". No menu lateral, acesse a opção "Dashboards" e na opção "New" selecione "Import". Selecione o arquivo "dash.json" que está na raiz do projeto e clique em "Import". 
+Nesse momento a aplicação será executada. Acesse http://localhost:3000/ com o usuário e senha "admin". 
+No menu lateral, acesse a opção "Dashboards" e na opção "New" selecione "Import". 
+Selecione o arquivo "dash.json" que está na raiz do projeto e clique em "Import". 
 Nesse momento será apresentado o dashboard importado.
-
-
 
