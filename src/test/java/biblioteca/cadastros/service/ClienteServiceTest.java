@@ -66,7 +66,7 @@ class ClienteServiceTest {
         given(repository.findAll(paginacao)).willReturn(page);
 
         //when
-        List<Cliente> result = clienteService.listarTodos(paginacao);
+        List<ClienteDto> result = clienteService.buscarTodos("", paginacao);
 
         //then
         then(repository).should(atLeastOnce()).findAll(paginacao);
@@ -80,7 +80,7 @@ class ClienteServiceTest {
         given(repository.findById(1L)).willReturn(Optional.of(cliente));
 
         //when
-        var result = clienteService.listarPorId(1L);
+        var result = clienteService.buscarPorId(1L);
 
         //then
         then(repository).should().findById(anyLong());
@@ -96,7 +96,7 @@ class ClienteServiceTest {
         given(repository.findById(2L)).willReturn(Optional.of(cliente));
 
         //when
-        var result = clienteService.listarEnderecosPorCliente(2L);
+        var result = clienteService.buscarEnderecosPorCliente(2L);
 
         //then
         then(repository).should().findById(anyLong());
@@ -117,15 +117,15 @@ class ClienteServiceTest {
                 .withIgnoreCase()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
 
-        Example example = Example.of(cliente, matcher);
+        Example example = Example.of(cliente.getNome(), matcher);
 
         given(repository.findAll(example, Sort.by("id").ascending())).willReturn(List.of(cliente));
 
         //when
-        List<Cliente> result = clienteService.buscarPor(cliente);
+        List<ClienteDto> result = clienteService.buscarTodos(cliente.getNome(), Pageable.unpaged());
 
         //then
-        assertThat(result).hasSize(1).contains(cliente);
+        assertThat(result).hasSize(1).contains(ClienteDto.map(cliente));
     }
 
     @DisplayName("Teste de cadastro de cliente.")
@@ -133,7 +133,9 @@ class ClienteServiceTest {
     void deveCadastrarClienteAoInformarTodosOsCamposValidos() {
         //given
         var cliente = this.clientes.get(0);
-        ClienteDto dto = new ClienteDto(cliente.getNome(), cliente.getDocumento(), cliente.getEndereco().getCep());
+        ClienteDto dto = new ClienteDto(1l, cliente.getNome(),
+                                        cliente.getDocumento(),
+                                        cliente.getEndereco().getCep());
 
         given(repository.save(any(Cliente.class))).willReturn(cliente);
 
@@ -150,7 +152,8 @@ class ClienteServiceTest {
     void deveEditarClienteAoSelecionarClientexistente() {
         //given
         var cliente = this.clientes.get(0);
-        ClienteDto dto = new ClienteDto(cliente.getNome(), cliente.getDocumento(), cliente.getEndereco().getCep());
+        ClienteDto dto = new ClienteDto(1l, cliente.getNome(),
+            cliente.getDocumento(), cliente.getEndereco().getCep());
 
         given(repository.findById(1L)).willReturn(Optional.of(cliente));
 

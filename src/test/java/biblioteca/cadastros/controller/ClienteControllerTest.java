@@ -68,7 +68,7 @@ class ClienteControllerTest {
     void deveListarPessoaPorId() throws Exception {
         //given
         Cliente cliente = umClienteDigitado();
-        given(service.listarPorId(3L)).willReturn(cliente);
+        given(service.buscarPorId(3L)).willReturn(ClienteDto.map(cliente));
 
         //when
         mockMvc.perform(get(PATH + "/3")
@@ -76,7 +76,7 @@ class ClienteControllerTest {
                 .andExpect(status().isOk());
 
         //then
-        then(service).should().listarPorId(longArgumentCaptor.capture());
+        then(service).should().buscarPorId(longArgumentCaptor.capture());
         assertThat(longArgumentCaptor.getValue()).isEqualTo(3);
     }
 
@@ -84,9 +84,9 @@ class ClienteControllerTest {
     @Test
     void deveListarTodasOsClientesCadastrados() throws Exception {
         //given
-        Cliente cliente = umClienteDigitado();
+        ClienteDto clienteDto = ClienteDto.map(umClienteDigitado());
         Pageable paginacao = PageRequest.of(0,5, Sort.Direction.ASC, "id");
-        given(service.listarTodos(paginacao)).willReturn(List.of(cliente));
+        given(service.buscarTodos(null, paginacao)).willReturn(List.of(clienteDto));
 
         //when
         mockMvc.perform(get(PATH)
@@ -97,8 +97,8 @@ class ClienteControllerTest {
                 .andExpect(status().isOk());
 
         //then
-        then(service).should().listarTodos(paginacao);
-        assertThat(service.listarTodos(paginacao)).contains(cliente);
+        then(service).should().buscarTodos(null, paginacao);
+        assertThat(service.buscarTodos(null, paginacao)).contains(clienteDto);
     }
 
     @DisplayName("Testa o cadastramento de um cliente.")
@@ -107,9 +107,9 @@ class ClienteControllerTest {
     void deveCadastrarCliente() throws Exception {
         //given
         var cliente = new Cliente("Carlos", "89233687090", umEnderecoDigitado());
-        ClienteDto dto = new ClienteDto(cliente.getNome(), cliente.getDocumento(), cliente.getEndereco().getCep());
+        ClienteDto dto = new ClienteDto(1l, cliente.getNome(), cliente.getDocumento(), cliente.getEndereco().getCep());
 
-        when(service.cadastrar(any(ClienteDto.class))).thenReturn(cliente);
+        when(service.cadastrar(any(ClienteDto.class))).thenReturn(dto);
 
         var result = mockMvc.perform(request(HttpMethod.POST, PATH)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -134,9 +134,9 @@ class ClienteControllerTest {
     void deveEditarCliente() throws Exception {
         //given
         var cliente = new Cliente("Camila", "19898236027", umEnderecoDigitado());
-        ClienteDto dto = new ClienteDto(cliente.getNome(), cliente.getDocumento(), cliente.getEndereco().getCep());
+        ClienteDto dto = new ClienteDto(1l,cliente.getNome(), cliente.getDocumento(), cliente.getEndereco().getCep());
 
-        given(service.listarPorId(7L)).willReturn(cliente);
+        given(service.buscarPorId(7L)).willReturn(ClienteDto.map(cliente));
 
         // when
         mockMvc.perform(put(PATH + "/7")
@@ -158,7 +158,7 @@ class ClienteControllerTest {
     void deveListarClientePorFiltroInformado() throws Exception {
         //given
         Cliente cliente = umClienteDigitado();
-        ClienteDto dto = new ClienteDto(cliente.getNome(), cliente.getDocumento(), cliente.getEndereco().getCep());
+        ClienteDto dto = new ClienteDto(1l,cliente.getNome(), cliente.getDocumento(), cliente.getEndereco().getCep());
 
         ExampleMatcher matcher = ExampleMatcher
                 .matching()
@@ -167,7 +167,7 @@ class ClienteControllerTest {
 
         Example example = Example.of(cliente, matcher);
 
-        given(service.buscarPor(cliente)).willReturn(List.of(cliente));
+        given(service.buscarTodos(cliente.getNome(), Pageable.unpaged())).willReturn(List.of(dto));
 
         //when
         mockMvc.perform(get(PATH + "/filtrar")
@@ -179,7 +179,7 @@ class ClienteControllerTest {
                 .andExpect(status().isOk());
 
         //then
-        assertThat(service.buscarPor(cliente)).contains(cliente);
+        assertThat(service.buscarTodos(cliente.getNome(), Pageable.unpaged())).contains(dto);
     }
 
 }

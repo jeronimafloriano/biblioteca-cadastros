@@ -86,7 +86,7 @@ class ClienteControllerTestIT {
 
     @Test
     void deveCadastrarCliente() throws Exception {
-        var dto = new ClienteDto("Jose", "89233687090", "74370410");
+        var dto = new ClienteDto(1l,"Jose", "89233687090", "74370410");
         Cliente response = restTemplate.postForObject(baseUrl, dto, Cliente.class);
 
         assertEquals("Jose", response.getNome());
@@ -101,7 +101,7 @@ class ClienteControllerTestIT {
         clienteRepository.saveAndFlush(cliente);
         enderecoRepository.saveAndFlush(endereco);
 
-        var dto = new ClienteDto("Suzana", "10124119077", "74370320");
+        var dto = new ClienteDto(1l,"Suzana", "10124119077", "74370320");
         restTemplate.put(baseUrl + "/" + cliente.getId(), dto);
 
         Cliente result = clienteRepository.findById(cliente.getId()).get();
