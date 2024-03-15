@@ -35,6 +35,7 @@ public class ClienteController {
         return new ResponseEntity<>(clientes, HttpStatus.OK);
     }
 
+
     @Operation(
         description = "Obter detalhes do cadastro de um cliente",
         tags = {"Clientes"})
