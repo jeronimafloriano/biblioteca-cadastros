@@ -18,6 +18,7 @@ import org.springframework.data.domain.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.jpa.domain.Specification;
 
 import static biblioteca.cadastros.utils.TestsFactory.umEnderecoDigitado;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -86,7 +87,10 @@ class ClienteServiceTest {
         then(repository).should().findById(anyLong());
         then(repository).shouldHaveNoMoreInteractions();
 
-        assertThat(result).isNotNull().isEqualTo(cliente);
+        assertThat(result).isNotNull();
+        assertThat(result.getNome()).isEqualTo(cliente.getNome());
+        assertThat(result.getDocumento()).isEqualTo(cliente.getDocumento());
+        assertThat(result.getCep()).isEqualTo(cliente.getEndereco().getCep());
     }
 
     @Test
@@ -119,13 +123,17 @@ class ClienteServiceTest {
 
         Example example = Example.of(cliente.getNome(), matcher);
 
-        given(repository.findAll(example, Sort.by("id").ascending())).willReturn(List.of(cliente));
+        PageImpl<Cliente> page = new PageImpl<>(List.of(cliente));
+        given(repository.findAll(any(Specification.class), any(Pageable.class))).willReturn(page);
 
         //when
         List<ClienteDto> result = clienteService.buscarTodos(cliente.getNome(), Pageable.unpaged());
 
         //then
-        assertThat(result).hasSize(1).contains(ClienteDto.map(cliente));
+        assertThat(result).hasSize(1);
+        assertThat(result.get(0).getNome()).isEqualTo(cliente.getNome());
+        assertThat(result.get(0).getDocumento()).isEqualTo(cliente.getDocumento());
+        assertThat(result.get(0).getCep()).isEqualTo(cliente.getEndereco().getCep());
     }
 
     @DisplayName("Teste de cadastro de cliente.")
@@ -144,7 +152,10 @@ class ClienteServiceTest {
 
         //then
         then(repository).shouldHaveNoMoreInteractions();
-        assertThat(result).isNotNull().isEqualTo(cliente);
+        assertThat(result).isNotNull();
+        assertThat(result.getNome()).isEqualTo(cliente.getNome());
+        assertThat(result.getDocumento()).isEqualTo(cliente.getDocumento());
+        assertThat(result.getCep()).isEqualTo(cliente.getEndereco().getCep());
     }
 
     @DisplayName("Teste de edição de um cliente existente.")

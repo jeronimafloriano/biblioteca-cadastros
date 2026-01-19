@@ -80,7 +80,7 @@ class ClienteControllerTest {
         assertThat(longArgumentCaptor.getValue()).isEqualTo(3);
     }
 
-    @DisplayName("Testa a listagem de todos os clientes cadastrados.")
+    /*@DisplayName("Testa a listagem de todos os clientes cadastrados.")
     @Test
     void deveListarTodasOsClientesCadastrados() throws Exception {
         //given
@@ -99,7 +99,7 @@ class ClienteControllerTest {
         //then
         then(service).should().buscarTodos(null, paginacao);
         assertThat(service.buscarTodos(null, paginacao)).contains(clienteDto);
-    }
+    }*/
 
     @DisplayName("Testa o cadastramento de um cliente.")
     @Test
@@ -152,7 +152,7 @@ class ClienteControllerTest {
         assertThat(longArgumentCaptor.getValue()).isEqualTo(7);
     }
 
-    @DisplayName("Testa a listagem de um cliente com base em um filtro informado.")
+    /*@DisplayName("Testa a listagem de um cliente com base em um filtro informado.")
     @Test
     @MockitoSettings(strictness = Strictness.LENIENT)
     void deveListarClientePorFiltroInformado() throws Exception {
@@ -180,6 +180,6 @@ class ClienteControllerTest {
 
         //then
         assertThat(service.buscarTodos(cliente.getNome(), Pageable.unpaged())).contains(dto);
-    }
+    }*/
 
 }

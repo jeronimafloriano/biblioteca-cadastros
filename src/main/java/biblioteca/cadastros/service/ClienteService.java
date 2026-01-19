@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Map;
 
 import static java.util.stream.Collectors.toList;
 
@@ -36,6 +37,15 @@ public class ClienteService {
         return clientes.stream()
             .map(ClienteDto::map)
             .collect(toList());
+    }
+
+    @Transactional(readOnly = true)
+    public Page<ClienteDto> buscarTodosPaginado(String filtro, Pageable paginacao){
+        Page<Cliente> clientes = filtro!= null && !filtro.isBlank()
+            ? repository.findAll(criarFiltroDeNome(filtro), paginacao)
+            : repository.findAll(paginacao);
+
+        return clientes.map(ClienteDto::map);
     }
 
     @Transactional(readOnly = true)
@@ -78,6 +88,30 @@ public class ClienteService {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "Cliente não encontrado.");
             });
+    }
+
+    @Transactional
+    public ClienteDto atualizarParcial(Long id, Map<String, Object> campos) {
+        Cliente cliente = buscarCliente(id);
+        
+        if (campos.containsKey("nome")) {
+            cliente.setNome((String) campos.get("nome"));
+        }
+        
+        if (campos.containsKey("documento")) {
+            cliente.setDocumento((String) campos.get("documento"));
+        }
+        
+        if (campos.containsKey("cep")) {
+            String cep = (String) campos.get("cep");
+            var enderecoId = cliente.getEndereco().getId();
+            Endereco endereco = enderecoService.editar(enderecoId, cep);
+            cliente.setEndereco(endereco);
+            enderecoService.vincularCliente(endereco, cliente);
+        }
+        
+        repository.save(cliente);
+        return ClienteDto.map(cliente);
     }
 
     private Specification<Cliente> criarFiltroDeNome(String filtro){

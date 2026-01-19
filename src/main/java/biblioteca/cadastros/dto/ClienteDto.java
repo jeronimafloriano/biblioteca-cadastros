@@ -47,4 +47,8 @@ public class ClienteDto {
     public String getCep() {
         return cep;
     }
+
+    public Long getId() {
+        return id;
+    }
 }
